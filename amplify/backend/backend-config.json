@@ -44,7 +44,7 @@
     }
   },
   "custom": {
-    "customResDemo": {
+    "storage": {
       "dependsOn": [
         {
           "attributes": [
