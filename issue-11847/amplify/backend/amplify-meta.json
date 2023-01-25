@@ -1,0 +1,82 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify-test-dev-92700-authRole",
+      "UnauthRoleArn": "arn:aws:iam::564528213423:role/amplify-amplify-test-dev-92700-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::564528213423:role/amplify-amplify-test-dev-92700-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amplify-test-dev-92700-deployment",
+      "UnauthRoleName": "amplify-amplify-test-dev-92700-unauthRole",
+      "StackName": "amplify-amplify-test-dev-92700",
+      "StackId": "arn:aws:cloudformation:us-east-1:564528213423:stack/amplify-amplify-test-dev-92700/0bad9aa0-9c8a-11ed-846d-0a310339e591",
+      "AmplifyAppId": "d3vcntfhu7nnmk"
+    }
+  },
+  "api": {
+    "amplifyDatasource": {
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7,
+              "description": ""
+            },
+            "authenticationType": "API_KEY"
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "auth": {
+    "amplifytest63e34656": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "custom": {
+    "storage": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "BucketName",
+            "Region"
+          ],
+          "category": "storage",
+          "resourceName": "demo"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "customCDK"
+    }
+  },
+  "storage": {
+    "demo": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
+  }
+}
