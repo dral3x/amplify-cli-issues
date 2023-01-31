@@ -1,34 +1,31 @@
 # How to reproduce the issue
 
-Run 
-```bash
-export APP_ID="???"
-export PROFILE_NAME="???"
-export PROJECT_NAME="???"
-export ENV_NAME="???"
-
-export AWSCLOUDFORMATIONCONFIG="{\
-\"configLevel\":\"project\",\
-\"useProfile\":true,\
-\"profileName\":\"$PROFILE_NAME\"\
-}" \
-export AMPLIFY="{\
-\"projectName\":\"$PROJECT_NAME\",\
-\"appId\":\"$APP_ID\",\
-\"envName\":\"$ENV_NAME\",\
-\"defaultEditor\":\"code\"\
-}" \
-export FRONTEND="{\
-\"frontend\":\"ios\"\
-}" \
-export PROVIDERS="{\
-\"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
-}" \
-
-amplify init --amplify $AMPLIFY --frontend $FRONTEND --providers $PROVIDERS
+1. Deploy the project on a new environment (for example `demo`), by doing
+```
+amplify init
+amplify push
 ```
 
-After that completes successfully, the file `amplify/backend/types/amplify-dependent-resources-ref.d.ts` will be changed, loosing the category "storage"
+2. Commit local changes
+```
+git add .
+git commit -m "testing new env"
+```
+
+2. Edit `run.sh` and adjust the top 4 variables (if needed).
+
+3. Reset amplify folder
+```
+rm -rf amplify
+git checkout amplify
+```
+
+4. Re-init the project using the `run.sh` script
+```
+./run.sh
+```
+
+At this stage, the file `amplify/backend/types/amplify-dependent-resources-ref.d.ts` lost the category "storage"
 
 ```diff
 diff --git a/amplify/backend/types/amplify-dependent-resources-ref.d.ts b/amplify/backend/types/amplify-dependent-resources-ref.d.ts
@@ -48,5 +45,4 @@ index a7d1bce..7e3a194 100644
    }
  }
 \ No newline at end of file
-
 ```
